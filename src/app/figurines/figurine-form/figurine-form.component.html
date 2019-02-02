@@ -1,0 +1,67 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-toolbar class="main-toolbar" color="primary">
+    <button type="button" mat-icon-button (click)="back()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>{{ figurine && figurine.id ? 'Figurine n°' + figurine.id : 'Nouvelle figurine' }}</h1>
+    <span class="spacer"></span>
+    <button type="button" mat-icon-button *ngIf="figurine">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button type="submit" mat-icon-button *ngIf="!isSaving; else saving">
+      <mat-icon>save</mat-icon>
+    </button>
+    <ng-template #saving>
+      <mat-spinner color="accent" diameter="40"></mat-spinner>
+    </ng-template>
+  </mat-toolbar>
+
+  <div class="container">
+
+    <div class="form-group mat-elevation-z2">
+      <mat-toolbar class="form-group-title">Bibliographie</mat-toolbar>
+      <div class="form-group-body" formGroupName="bibliography">
+        <mat-form-field>
+          <input matInput placeholder="Référence du livre complète" formControlName="longReference" required>
+          <mat-error>Requis</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Référence du livre courte" formControlName="shortReference">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Page description" formControlName="description">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Page Photo" formControlName="photo">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-group mat-elevation-z2">
+      <mat-toolbar class="form-group-title">Lieux</mat-toolbar>
+      <div class="form-group-body" formGroupName="locations">
+        <mat-form-field>
+          <input matInput placeholder="Provenance" formControlName="origin">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Sanctuaire" formControlName="sanctuary">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Atelier" formControlName="workshop">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-group mat-elevation-z2">
+      <mat-toolbar class="form-group-title">Détails</mat-toolbar>
+      <div class="form-group-body" formGroupName="details">
+        <mat-form-field>
+          <input matInput placeholder="Type" formControlName="type">
+        </mat-form-field>
+        <app-particularity-selector [control]="particularitiesControl"></app-particularity-selector>
+      </div>
+    </div>
+
+    <input type="hidden" formGroupName="id">
+  </div>
+</form>

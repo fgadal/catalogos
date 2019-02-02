@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <h1>Liste des figurines</h1>
+  <span class="spacer"></span>
+  <button mat-icon-button [routerLink]="['new']">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-toolbar>
+
+<table class="table is-fullwidth is-bordered is-striped is-narrow is-hoverable">
+  <thead>
+    <tr>
+      <th>Numéro</th>
+      <th>Livre</th>
+      <th>Provenance
+      </th>
+    </tr>
+  </thead>
+  <tr *ngFor="let figurine of figurines$ | async" (click)="onRowClick(figurine)">
+    <td>{{ figurine.id }}</td>
+    <td>{{ figurine.shortReference || figurine.longReference }}</td>
+    <td>{{ figurine.origin || '–' }}</td>
+  </tr>
+</table>

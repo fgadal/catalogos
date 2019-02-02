@@ -1,0 +1,30 @@
+.main-toolbar {
+  margin-bottom: 24px;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-card {
+  margin-bottom: 24px;
+}
+
+.container {
+  margin-top: 90px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group-title {
+  margin-bottom: 8px;
+}
+
+.form-group-body {
+  padding: 0 24px;
+}
