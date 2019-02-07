@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from 'electron';
+import { autoUpdater } from 'electron-updater';
 import { join } from 'path';
 import { format } from 'url';
 
@@ -6,6 +7,11 @@ let win: BrowserWindow = null;
 
 const args = process.argv.slice(1);
 const serve = args.some(val => val === '--serve');
+
+autoUpdater.setFeedURL({
+  provider: 'github',
+  token: process.env.GH_TOKEN
+});
 
 function createWindow() {
   // const electronScreen = screen;
@@ -52,6 +58,8 @@ try {
       createWindow();
     }
   });
+
+  app.on('ready', () => autoUpdater.checkForUpdatesAndNotify());
 } catch (e) {
   console.error(e);
   throw e;

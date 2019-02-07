@@ -26,7 +26,6 @@ export class FigurineService {
   }
 
   save(figurine: Figurine): Observable<Figurine> {
-    console.log('SSSSSSSSSSS', figurine);
     return from(
       this.databaseService.connection.then(connection =>
         connection.manager.save(figurine)

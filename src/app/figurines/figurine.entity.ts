@@ -3,8 +3,10 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm';
+import { FigurineImage } from './figurine-image.entity';
 import { Particularity } from './particularity.entity';
 
 @Entity()
@@ -23,6 +25,12 @@ export class Figurine {
 
   @Column({ nullable: true })
   photo: string;
+
+  @OneToMany(() => FigurineImage, image => image.figurine, {
+    eager: true,
+    cascade: true
+  })
+  images: FigurineImage[];
 
   @Column({ nullable: true })
   origin: string;

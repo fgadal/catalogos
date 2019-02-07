@@ -32,11 +32,17 @@ export class FigurineFormComponent {
 
   isSaving = false;
 
+  private files: File[];
+
   constructor(
     private readonly fb: FormBuilder,
     private readonly router: Router
   ) {
     this.form = this.createForm();
+  }
+
+  get imagesControl(): FormControl {
+    return this.form.get('bibliography.images') as FormControl;
   }
 
   get particularitiesControl(): FormControl {
@@ -47,10 +53,14 @@ export class FigurineFormComponent {
     this.router.navigate(['/']);
   }
 
-  onSubmit() {
+  onFileChange(files: File[]) {
+    this.files = files;
+  }
+
+  async onSubmit() {
     if (this.form.valid) {
       this.isSaving = true;
-      const figurine = this.prepareFigurine();
+      const figurine = await this.prepareFigurine();
       this.submitted.emit(figurine);
     }
   }
@@ -69,7 +79,8 @@ export class FigurineFormComponent {
         description: this.fb.control(
           this.figurine && this.figurine.description
         ),
-        photo: this.fb.control(this.figurine && this.figurine.photo)
+        photo: this.fb.control(this.figurine && this.figurine.photo),
+        images: this.fb.control(this.figurine && this.figurine.images)
       }),
       locations: this.fb.group({
         origin: this.fb.control(this.figurine && this.figurine.origin),
@@ -85,13 +96,14 @@ export class FigurineFormComponent {
     });
   }
 
-  private prepareFigurine() {
+  private async prepareFigurine() {
     const formModel = this.form.value;
 
     const figurine = new Figurine();
     figurine.id = formModel.id;
     figurine.description = formModel.bibliography.description;
     figurine.photo = formModel.bibliography.photo;
+    figurine.images = formModel.bibliography.images;
     figurine.longReference = formModel.bibliography.longReference;
     figurine.shortReference = formModel.bibliography.shortReference;
     figurine.origin = formModel.locations.origin;
@@ -99,6 +111,8 @@ export class FigurineFormComponent {
     figurine.workshop = formModel.locations.workshop;
     figurine.type = formModel.details.type;
     figurine.particularities = formModel.details.particularities;
+
+    console.log(figurine);
 
     return figurine;
   }

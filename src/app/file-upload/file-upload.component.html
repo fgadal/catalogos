@@ -1,0 +1,23 @@
+<h4 class="mat-h4">Images</h4>
+
+<div class="file-upload-container">
+  <div *ngFor="let image of images" class="image-preview" [style.backgroundImage]="getBackgroundUrl(image)" (click)="showImage(image)">
+    <div class="image-preview-backdrop"></div>
+  </div>
+
+  <div class="upload-button" ngFileSelect>
+    <label>
+      <mat-icon>add</mat-icon>
+      <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)">
+    </label>
+  </div>
+</div>
+<!-- <div class="drop-container" ngFileDrop (uploadOutput)="onUploadOutput($event)">
+  <p class="drop-container-inner" *ngIf="!imageSrc">
+    Glisser-Déposer ou
+    <label class="upload-button">
+    </label>
+    un fichier
+  </p>
+  <img *ngIf="imageSrc" [src]="imageSrc" alt="">
+</div> -->

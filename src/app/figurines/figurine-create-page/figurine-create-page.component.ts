@@ -15,7 +15,6 @@ export class FigurineCreatePageComponent {
   ) {}
 
   onSubmit(figurine: Figurine) {
-    console.log(figurine);
     this.figurineService.save(figurine).subscribe(() => {
       this.router.navigate(['/']);
     });
