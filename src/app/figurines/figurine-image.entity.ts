@@ -1,10 +1,5 @@
-import {
-  AfterLoad,
-  Column,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn
-} from 'typeorm';
+import { AfterLoad, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+
 import { Figurine } from './figurine.entity';
 
 @Entity()
@@ -30,13 +25,4 @@ export class FigurineImage {
       this.dataURL = window.URL.createObjectURL(new Blob([this.blob]));
     }
   }
-
-  // @BeforeInsert()
-  // async convertToBlob(): Promise<void> {
-  //   this.blob = await new Promise(resolve => {
-  //     const reader = new FileReader();
-  //     reader.onload = () => resolve(reader.result as any);
-  //     reader.readAsBinaryString(this.dataURL);
-  //   });
-  // }
 }

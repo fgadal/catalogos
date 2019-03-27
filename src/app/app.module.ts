@@ -3,19 +3,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule,
   MatCardModule,
+  MatCheckboxModule,
   MatDialogModule,
   MatIconModule,
   MatInputModule,
   MatProgressSpinnerModule,
   MatSelectModule,
-  MatToolbarModule
+  MatToolbarModule,
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxUploaderModule } from 'ngx-uploader';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreateParticularityDialogComponent } from './figurines/create-particularity-dialog/create-particularity-dialog.component';
+import {
+  CreateParticularityDialogComponent,
+} from './figurines/create-particularity-dialog/create-particularity-dialog.component';
 import { FigurineCreatePageComponent } from './figurines/figurine-create-page/figurine-create-page.component';
 import { FigurineEditPageComponent } from './figurines/figurine-edit-page/figurine-edit-page.component';
 import { FigurineFormComponent } from './figurines/figurine-form/figurine-form.component';
@@ -46,6 +50,7 @@ import { ParticularitySelectorComponent } from './particularity-selector/particu
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
+    MatCheckboxModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatProgressSpinnerModule,
@@ -53,10 +58,7 @@ import { ParticularitySelectorComponent } from './particularity-selector/particu
     ReactiveFormsModule,
     NgxUploaderModule
   ],
-  entryComponents: [
-    CreateParticularityDialogComponent,
-    ImageViewerDialogComponent
-  ],
+  entryComponents: [CreateParticularityDialogComponent, ImageViewerDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

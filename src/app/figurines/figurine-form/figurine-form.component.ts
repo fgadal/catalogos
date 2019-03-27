@@ -1,11 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { Figurine } from '../figurine.entity';
 
 @Component({
@@ -34,10 +30,7 @@ export class FigurineFormComponent {
 
   private files: File[];
 
-  constructor(
-    private readonly fb: FormBuilder,
-    private readonly router: Router
-  ) {
+  constructor(private readonly fb: FormBuilder, private readonly router: Router) {
     this.form = this.createForm();
   }
 
@@ -69,16 +62,9 @@ export class FigurineFormComponent {
     return this.fb.group({
       id: this.figurine && this.figurine.id,
       bibliography: this.fb.group({
-        longReference: this.fb.control(
-          this.figurine && this.figurine.longReference,
-          Validators.required
-        ),
-        shortReference: this.fb.control(
-          this.figurine && this.figurine.shortReference
-        ),
-        description: this.fb.control(
-          this.figurine && this.figurine.description
-        ),
+        longReference: this.fb.control(this.figurine && this.figurine.longReference, Validators.required),
+        shortReference: this.fb.control(this.figurine && this.figurine.shortReference),
+        description: this.fb.control(this.figurine && this.figurine.description),
         photo: this.fb.control(this.figurine && this.figurine.photo),
         images: this.fb.control(this.figurine && this.figurine.images)
       }),
@@ -89,9 +75,9 @@ export class FigurineFormComponent {
       }),
       details: this.fb.group({
         type: this.fb.control(this.figurine && this.figurine.type),
-        particularities: this.fb.control(
-          this.figurine && this.figurine.particularities
-        )
+        isModeling: this.fb.control(this.figurine ? this.figurine.isModeling : false),
+        isMolding: this.fb.control(this.figurine ? this.figurine.isMolding : false),
+        particularities: this.fb.control(this.figurine && this.figurine.particularities)
       })
     });
   }
@@ -110,9 +96,9 @@ export class FigurineFormComponent {
     figurine.sanctuary = formModel.locations.sanctuary;
     figurine.workshop = formModel.locations.workshop;
     figurine.type = formModel.details.type;
+    figurine.isModeling = formModel.details.isModeling;
+    figurine.isMolding = formModel.details.isMolding;
     figurine.particularities = formModel.details.particularities;
-
-    console.log(figurine);
 
     return figurine;
   }

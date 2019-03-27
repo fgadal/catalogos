@@ -28,3 +28,19 @@ mat-card {
 .form-group-body {
   padding: 0 24px;
 }
+
+.manufacturing {
+  padding-bottom: 1.25em;
+}
+
+.manufacturing .mat-h4 {
+  margin: 0;
+}
+
+.manufacturing-checkboxes {
+  display: flex;
+}
+
+.manufacturing-checkboxes mat-checkbox {
+  margin-right: 16px;
+}

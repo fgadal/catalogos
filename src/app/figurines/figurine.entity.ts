@@ -1,11 +1,5 @@
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  OneToMany,
-  PrimaryGeneratedColumn
-} from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+
 import { FigurineImage } from './figurine-image.entity';
 import { Particularity } from './particularity.entity';
 
@@ -43,6 +37,12 @@ export class Figurine {
 
   @Column({ nullable: true })
   type: string;
+
+  @Column({ default: false })
+  isModeling: boolean;
+
+  @Column({ default: false })
+  isMolding: boolean;
 
   @ManyToMany(() => Particularity, { eager: true, cascade: true })
   @JoinTable()

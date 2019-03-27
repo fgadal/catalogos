@@ -3,7 +3,9 @@
     <button type="button" mat-icon-button (click)="back()">
       <mat-icon>arrow_back</mat-icon>
     </button>
-    <h1>{{ figurine && figurine.id ? 'Figurine n°' + figurine.id : 'Nouvelle figurine' }}</h1>
+    <h1>
+      {{ figurine && figurine.id ? 'Figurine n°' + figurine.id : 'Nouvelle figurine' }}
+    </h1>
     <span class="spacer"></span>
     <button type="button" mat-icon-button *ngIf="figurine">
       <mat-icon>delete</mat-icon>
@@ -17,22 +19,21 @@
   </mat-toolbar>
 
   <div class="container">
-
     <div class="form-group mat-elevation-z2">
       <mat-toolbar class="form-group-title">Bibliographie</mat-toolbar>
       <div class="form-group-body" formGroupName="bibliography">
         <mat-form-field>
-          <input matInput placeholder="Référence du livre complète" formControlName="longReference" required>
+          <input matInput placeholder="Référence du livre complète" formControlName="longReference" required />
           <mat-error>Requis</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Référence du livre courte" formControlName="shortReference">
+          <input matInput placeholder="Référence du livre courte" formControlName="shortReference" />
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Page description" formControlName="description">
+          <input matInput placeholder="Page description" formControlName="description" />
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Page Photo" formControlName="photo">
+          <input matInput placeholder="Page Photo" formControlName="photo" />
         </mat-form-field>
 
         <app-file-upload [control]="imagesControl" (fileChange)="onFileChange($event)"></app-file-upload>
@@ -43,13 +44,13 @@
       <mat-toolbar class="form-group-title">Lieux</mat-toolbar>
       <div class="form-group-body" formGroupName="locations">
         <mat-form-field>
-          <input matInput placeholder="Provenance" formControlName="origin">
+          <input matInput placeholder="Provenance" formControlName="origin" />
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Sanctuaire" formControlName="sanctuary">
+          <input matInput placeholder="Sanctuaire" formControlName="sanctuary" />
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Atelier" formControlName="workshop">
+          <input matInput placeholder="Atelier" formControlName="workshop" />
         </mat-form-field>
       </div>
     </div>
@@ -58,12 +59,26 @@
       <mat-toolbar class="form-group-title">Détails</mat-toolbar>
       <div class="form-group-body" formGroupName="details">
         <mat-form-field>
-          <input matInput placeholder="Type" formControlName="type">
+          <input matInput placeholder="Type" formControlName="type" />
         </mat-form-field>
+
+        <div class="manufacturing">
+          <h4 class="mat-h4">Fabrication</h4>
+
+          <div class="manufacturing-checkboxes">
+            <mat-checkbox color="primary" formControlName="isModeling">
+              Modelage
+            </mat-checkbox>
+            <mat-checkbox color="primary" formControlName="isMolding">
+              Moulage
+            </mat-checkbox>
+          </div>
+        </div>
+
         <app-particularity-selector [control]="particularitiesControl"></app-particularity-selector>
       </div>
     </div>
 
-    <input type="hidden" formGroupName="id">
+    <input type="hidden" formGroupName="id" />
   </div>
 </form>
